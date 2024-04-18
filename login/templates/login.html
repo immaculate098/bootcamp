@@ -1,0 +1,105 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANDING PAGE</title>
+    
+     {% load static %}
+
+     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+ 
+</head>
+
+<body style="align-items: center;margin-right: 500px; background-color: #5de0e6;">
+    
+
+<div class="card mb-3" style="max-width: 540px; border:  50px solid #ed83b5; border-radius: 0px; background: linear-gradient(to right, #5de0e6, #707a7b); ">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'images/DAYSTAR (1).png' %}" class="img-fluid rounded-start" alt="..." style="height: 100%;">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Get Started</h5>
+          <form>
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <a href="{% url 'forgot_view' %}" class="forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #ed83b5;">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+ -->
+
+<!-- login.html -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANDING PAGE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+</head>
+<body style="background-color: #5de0e6">
+    <div class="container">
+        <div class="card mx-auto mt-5 mb-5" style="max-width: 540px; border: 50px solid #ed83b5; border-radius: 0px; background: linear-gradient(to right, #5de0e6, #707a7b);">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{% static 'images/DAYSTAR (1).png' %}" class="img-fluid rounded-start" alt="..." style="height: 100%">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Get Started</h5>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    {{ form.username }}
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                    {{ form.password }}
+                                </div>
+                            </div>
+                            <a href="{% url 'forgot_view' %}" class="forgot-password">Forgot Password?</a><br><br>
+                            <button type="submit" class="btn btn-primary" style="background-color: #ed83b5;">Login</button>
+                        </form>
+                        {% if error_message %}
+                        <p class="text-danger">{{ error_message }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

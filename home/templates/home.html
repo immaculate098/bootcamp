@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body style="background-color: #5de0ed;">
+
+    <div class="container"  style="margin-left: 200px;margin-top: 80px;">
+        <!-- Circle on the right -->
+        <div class="circle">
+            <div class="content">
+                <h1>Worry free  parents<br>happy babies🦋</h1>
+                <p>Our highest services <br>are in baby care.</p> 
+            </div>
+        </div>
+
+        
+        <div class="links" style="margin-right: 100px; margin-bottom: 20px;">
+            <h1 style="color: #ed83b5;">WELCOME TO DAYSTAR DAYCARE</h1>
+            <p>Your dream smile is our care<br>We are your trusted reliable care takers<br>we believe that your baby deserves a rarest care<br>
+            
+            </p>
+            <div class="icons" style="margin-right: 300px;">
+                <a href="https://accounts.google.com/"><i class="fab fa-google"></i></a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+            </div><br><br><br>
+            <a href=" {% url 'login_view' %}" ><button style="background-color: #ed83b5; border-radius: 20px; width: 50%; height: 10%; padding: 10px;">Get Started</button></a>
+        </div>
+    </div>
+
+    
+    <footer class="footer" style="margin-right: 100px;">
+        <p>&copy; 2024 Daystar Daycare. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'javascript/include.js' %}"></script>
+</body>
+</html>
