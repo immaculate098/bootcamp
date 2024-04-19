@@ -38,6 +38,7 @@ urlpatterns = [
     path('', include('sales.urls')),
     path('', include('supply.urls')),
     path('', include('invent.urls')),
+    path('', include('sitterlist.urls')),
     
 ]
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-class Sitter(models.Model):
+class Student(models.Model):
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=10)
     location = models.CharField(max_length=100)
@@ -18,3 +18,4 @@ class Sitter(models.Model):
 
     def __str__(self):
         return f'Student:{self.name} {self.recommender_contact} {self.gender}'
+
