@@ -1,0 +1,48 @@
+body {
+    background-color: #5de0e6; /* Set background color */
+}
+
+.custom-bg-ed83b5 {
+    background-color: #ed83b5 !important;
+}
+
+
+.red{
+    color: black;
+    border-radius: 10px;
+    background-color: #ed83b5;
+    width: 20%;
+}
+.red2{
+    color: black;
+    border-radius: 10px;
+    background-color: #ed83b5;
+    width: 20%;
+}
+
+.red3{
+    color:black;
+    background-color: #ed83b5;
+    border-radius: 10px;
+    width: 20%;
+}
+
+.nav-link{
+    color: black;
+}
+
+.navbar-brand{
+    color: black;
+}
+
+
+
+.custom-input {
+    border-color: #ed83b5;
+}
+
+.custom-btn-ed83b5 {
+    background-color: #ed83b5; 
+    border-color: #ed83b5; 
+    color: #ffffff; 
+}
