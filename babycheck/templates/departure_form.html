@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Departure Form</title>
+    
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .form-container, .details-container {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .form-input-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .baby-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .baby-list-item {
+            width: 300px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .baby-list-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; 
+            margin-right: 10px;
+        }
+
+        .baby-details {
+            flex: 1;
+        }
+
+        
+        .edit-button,
+        .delete-button,
+        .read-button {
+            background-color: #ed83b5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-top: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"],
+        textarea {
+            border: 1px solid #ed83b5;
+            border-radius: 5px;
+            padding: 8px;
+            margin-bottom: 10px;
+            width: calc(100% - 22px); 
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #ed83b5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .image-upload-input {
+            display: none;
+        }
+
+        .image-upload-label {
+            background-color: #ed83b5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-input-container">
+                <form method="post" enctype="multipart/form-data" class="baby-form">
+                    {% csrf_token %}
+                    <div class="form-input-item">
+                        <label for="id_baby_name">Baby Name:</label>
+                        {{ form.baby_name }}
+                    </div>
+                    <div class="form-input-item">
+                        <label for="id_baby_fetcher">Baby Fetcher:</label>
+                        {{ form.baby_fetcher }}
+                    </div>
+                    <div class="form-input-item">
+                        <label for="id_time">Time:</label>
+                        {{ form.time }}
+                    </div>
+                    <div class="form-input-item">
+                        <label for="id_comment">Comment:</label>
+                        {{ form.comment }}
+                    </div>
+                    <input type="file" name="image" id="image-upload" class="image-upload-input" accept="image/*">
+                    <label for="image-upload" class="image-upload-label">Upload Image</label>
+                    <img id="uploaded-image" src="#" alt="Uploaded Image" style="display: none;">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="details-container">
+            <div class="container baby-list">
+                {% for departure in departures %}
+                <div class="baby-list-item">
+                    
+                    <div class="baby-details">
+                        <p>Baby Name: {{ departure.baby_name }}</p>
+                        <a href="{% url 'edit_departure' departure.id %}" class="edit-button">Edit</a>
+                        <a href="{% url 'delete_departure' departure.id %}" class="delete-button">Delete</a>
+                        <a href="{% url 'read_baby_details' departure.id %}" class="read-button">Read</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

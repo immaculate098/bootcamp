@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if form.instance.pk %}Edit Baby{% else %}Create Baby{% endif %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #5de0e6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #de83b5;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #de83b5;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #b34f8f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{% if form.instance.pk %}Edit Baby{% else %}Create Baby{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name">Name:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="id_gender">Gender:</label>
+                {{ form.gender }}
+            </div>
+            <div class="form-group">
+                <label for="id_age">Age:</label>
+                {{ form.age }}
+            </div>
+            <div class="form-group">
+                <label for="id_location">Location:</label>
+                {{ form.location }}
+            </div>
+            <div class="form-group">
+                <label for="id_brought_by">Brought By:</label>
+                {{ form.brought_by }}
+            </div>
+            <div class="form-group">
+                <label for="id_arrival_time">Arrival Time:</label>
+                {{ form.arrival_time }}
+            </div>
+            <div class="form-group">
+                <label for="id_parents_names">Parents' Names:</label>
+                {{ form.parents_names }}
+            </div>
+            <div class="form-group">
+                <label for="id_fee">Fee:</label>
+                {{ form.fee }}
+            </div>
+            <div class="form-group">
+                <label for="id_period_of_stay">Period of Stay:</label>
+                {{ form.period_of_stay }}
+            </div>
+            <div class="form-group">
+                <label for="id_baby_number">Baby Number:</label>
+                {{ form.baby_number }}
+            </div>
+            <div class="form-group">
+                <label for="id_assign">Assign Sitter:</label>
+                <select name="assigned_sitter" id="id_assign">
+                    {% for sitter in sitters %}
+                        <option value="{{ sitter.id }}">{{ sitter.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -15,22 +15,52 @@
     <link rel="stylesheet" href="{% static 'index.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 </head>
+
+
+
 <body>                      
 
 <div class="navbar" style="padding-bottom: 0%; background-color: #55ddee">
-    <div class="navbar-menu" >
+    
+
+    <div class="navbar-menu">
         <div class="dropdown">
             <button class="dropbtn">&#9776;<span class="menu-text">Menu</span></button>
             <div class="dropdown-content">
-                <a href="{% url 'sitterform_view' %}">Sitter Page</a>
-                <a href="#">Baby Page</a>
-                <a href="#">Payment Page</a>
-                <a href="{% url 'immy_view' %}" class="login">Inventory</a>
+                
+                <div class="dropdown">
+                    <button class="dropbtn">BabyPage</button>
+                    <div class="dropdown-content">
+                        <a href="#">Dashboard</a>
+                        <a href="{% url 'baby_list' %}">Baby List</a>
+                        <a href="{% url 'departure_form' %}">CheckIn</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown">
+                    <button class="dropbtn">PaymentPage</button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'manage' %}">Subpage 1</a>
+                        <a href="#">Subpage 2</a>
+                        <a href="#">Subpage 3</a>
+                    </div>
+                </div>
+                <!-- SitterPage dropdown -->
+                <div class="dropdown">
+                    <button class="dropbtn">SitterPage</button>
+                    <div class="dropdown-content">
+                        <a href="{% url 'immy_view' %}">Sitter List</a>
+                        <a href="{% url 'sitter_management' %}">Sitter Duty</a>
+                        <a href="#">Subpage 3</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    
+
      <div class="navbar-title" style="display: flex; align-items: center; justify-content: center; margin-bottom: 5%;">
-        <img src="{% static 'images/DAYSTAR (1).png' %}" alt="Logo" style="height: 100px; width: auto; margin-right: 10px; border-radius: 50%;"> 
+        <img src="{% static 'images/daystarlogo.png' %}" alt="Logo" style="height: 100px; width: auto; margin-right: 10px; border-radius: 50%;"> 
         <h1 style="margin-bottom: 20px;"><b>Daystar Daycare</b></h1>
     </div>
     

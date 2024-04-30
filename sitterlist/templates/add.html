@@ -1,32 +1,78 @@
-{% extends "base.html" %}
 
-{% block body %}
-<h3 class="text-center m-4">Add Sitter</h3>
-{% if success %}
-    <div class="alert alert-success" role="alert">
-        The new sitter was successfully added.
-        <a href="{% url 'index_view' %}" class="alert-link">Go to home page</a>
-    </div>
-{% else%}
- <div class="row justify-content-center">
-    <div class="col-6">
-        <div class="card bg-light mb-3">
-            <div class="card-header">
-                <i class="fa-solid fa-address-book fa-lg"></i>sitter regestration
-            </div>
-        <div class="card-body">
-         <form action="{% url 'add' %}" method="POST">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>List of sitters</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'list.css' %}">
+    <link rel="stylesheet" href="{% static 'list.css' %}">
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+    
+    <nav class="navbar navbar-expand-lg custom-bg-ed83b5" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'immy_view' %}">
+                <i class="fa-solid fa-user fa-lg"></i>Sitter Management System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'immy_view' %}"><i class="fa-solid fa-list fa-lg"></i>All sitters</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add' %}"><i class="fa-solid fa-plus fa-lg"></i>Add Sitter</a>
+                    </li>
+                </ul>
                 
-                
-           {% csrf_token %}
-           {{ form.as_p }}
-         <button type="submit" class="btn btn-primary">Add</button>
-         <a href="{% url 'immy_view' %}" class="btn btn-secondary">Cancel</a>
-         </form>
-             
             </div>
-          </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <h3 class="text-center m-4">Add Sitter</h3>
+        {% if success %}
+            <div class="alert alert-success" role="alert">
+                The new sitter was successfully added.
+                <a href="{% url 'index_view' %}" class="alert-link">Go to home page</a>
+            </div>
+        {% else%}
+         <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">
+                        <i class="fa-solid fa-address-book fa-lg"></i>sitter regestration
+                    </div>
+                <div class="card-body">
+                 <form action="{% url 'add' %}" method="POST">
+                        
+                        
+                   {% csrf_token %}
+                   {{ form.as_p }}
+                 <button type="submit" class="blue">Add</button>
+                <button type="submit" class="blue2"><a href="{% url 'immy_view' %}">Cancel</a></button> 
+                 </form>
+                     
+                    </div>
+                  </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
-</div>
-{% endif %}
-{% endblock %}
+
+    <footer class="mt-auto mb-4">
+        <div class="text-center">
+            <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

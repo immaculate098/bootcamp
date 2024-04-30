@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #5de0e6; 
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            border: 2px solid #000; 
+            margin-left: 50px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #000; 
+            border-right: 1px solid #000; 
+            background-color: whitesmoke; 
+            word-wrap: break-word; 
+        }
+        th {
+            background-color: #ed83b5;
+            color: #fff;
+            border-top: 2px solid #ed83b5;
+        }
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+        .add-button {
+            
+            width: auto; 
+            margin-left: 100%;
+            padding: 10px 20px;
+            border: none;
+            background-color: #ed83b5; 
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .add-button:hover {
+            background-color: #ed83b5; 
+        }
+        .action-links {
+            white-space: nowrap;
+        }
+        .action-links a {
+            margin-right: 5px;
+            display: inline-block; 
+            padding: 8px 16px; 
+            background-color: #ed83b5; 
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .action-links a:hover {
+            background-color: #ed83b5; 
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Baby List</h1>
+    <a href="{% url 'baby_create' %}" class="add-button" style="display: block; margin-left: 50px; width: 150px;">Add Baby</a><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Location</th>
+                <th>Brought By</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for baby in babies %}
+            <tr>
+                <td class="action-links">
+                    <a href="{% url 'baby_detail' baby.pk %}?show_additional_fields=true">Read</a>
+                    <a href="{% url 'baby_edit' baby.pk %}?show_additional_fields=true">Edit</a>
+                    <a href="{% url 'baby_delete' baby.pk %}?show_additional_fields=true">Delete</a>
+                </td>
+                
+                <td>{{ baby.name }}</td>
+                <td>{{ baby.gender }}</td>
+                <td>{{ baby.age }}</td>
+                <td>{{ baby.location }}</td>
+                <td>{{ baby.brought_by }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

@@ -46,3 +46,18 @@ body {
     border-color: #ed83b5; 
     color: #ffffff; 
 }
+
+.blue{
+    color: black;
+    border-radius: 10px;
+    background-color: #ed83b5;
+    width: 20%; 
+}
+
+.blue2{
+    color: black;
+    border-radius: 10px;
+    background-color: #ed83b5;
+    width: 20%; }
+
+

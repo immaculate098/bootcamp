@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitter Management</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'sitterduty.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+
+<style>
+
+.button-group {
+            display: inline-block;
+            
+        }
+.button-group form {
+            display: inline;
+            margin-right: 90px; 
+            
+        }
+        .custom-button {
+            background-color: #ed83b5;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;}
+
+
+</style>
+
+</head>
+<body style="background-color: #5de0e6">
+    <h1 style="color: #ed83b5;">Sitter Management</h1><br>
+
+    <form method="post">
+        {% csrf_token %}
+        <label>
+            <input type="radio" name="filter" value="on_duty" checked> On Duty
+        </label>
+        <label>
+            <input type="radio" name="filter" value="off_duty"> Off Duty
+        </label>
+        <button type="submit" class="custom-button">Apply Filter</button>
+    </form>
+    
+    <form method="post" action="{% url 'add_sitter' %}">
+        {% csrf_token %}
+        <button type="submit" class="custom-button">Add Sitter</button>
+    </form>
+
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Status</th>
+                <th>Actions</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for sitter in sitters %}
+            <tr>
+                <td>{{ sitter.name }}</td>
+                <td>{{ sitter.gender }}</td>
+                <td>
+                    {% if not sitter.on_duty %}
+                        <span>Off Duty</span>
+                    {% else %}
+                        <span>On Duty</span>
+                    {% endif %}
+                </td>
+                <td class="button-group">
+                    <form method="post" action="{% url 'delete_sitter' sitter.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="custom-button">Delete</button>
+                    </form>
+                    <form method="get" action="{% url 'update_sitter' sitter.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="name" value="{{ sitter.name }}">
+                        <input type="hidden" name="gender" value="{{ sitter.gender }}">
+                        
+                        <button type="submit" class="custom-button">Update</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table><br>
+
+    
+
+    <button type="submit" class="custom-button"><a href="{% url 'immy_view' %}">Cancel</a></button>
+
+    
+
+
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    
+</body>
+</html>
