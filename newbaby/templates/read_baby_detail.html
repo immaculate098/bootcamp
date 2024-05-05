@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Arrival Details</title>
+    {% load static %}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-container img {
+            border-radius: 50%;
+            width: 30%;
+            margin-bottom: 20px;
+        }
+        .form-container p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>more Baby's Details</h2>
+            <img src="{% static 'images/daystarlogo.png' %}" alt="Daystar Logo">
+            <p><strong>Baby Fetcher:</strong> {{ arrival.baby_fetcher }}</p>
+            <p><strong>Time:</strong> {{ arrival.time }}</p>
+            <p><strong>Comment:</strong> {{ arrival.comment }}</p>
+        </div>
+    </div>
+</body>
+</html>

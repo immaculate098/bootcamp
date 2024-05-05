@@ -1,5 +1,7 @@
-from . import views
-from django .urls import path
-urlpatterns =[
-    path('', views.invent_view,name='invent_view'),
+
+from django.urls import path
+from .views import invent
+
+urlpatterns = [
+    path('invent/', invent, name='invent'),
 ]

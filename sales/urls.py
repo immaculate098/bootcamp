@@ -11,3 +11,5 @@ urlpatterns = [
     path('receipt_detail/<int:receipt_id>/', views.receipt_detail, name='receipt_detail'),
     path('made_sales/', views.made_sales, name='made_sales'),
 ]
+    
+

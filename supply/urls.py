@@ -1,5 +1,10 @@
+# urls.py
+
+from django.urls import path
 from . import views
-from django .urls import path
-urlpatterns =[
-    path('', views.supply_view,name='supply_view'),
+
+urlpatterns = [
+    path('supply/', views.supply_item, name='supply_item'),
+    path('issue/', views.issue_item, name='issue_item'),
+    path('add/', views.add_supply, name='add_supply'),
 ]

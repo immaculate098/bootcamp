@@ -33,19 +33,22 @@
                     <div class="dropdown-content">
                         <a href="#">Dashboard</a>
                         <a href="{% url 'baby_list' %}">Baby List</a>
-                        <a href="{% url 'departure_form' %}">CheckIn</a>
+                        <a href="{% url 'departure_form' %}">Checkout</a>
+                        <a href="{% url 'arrival_form' %}">CheckIn</a>
                     </div>
                 </div>
                 
                 <div class="dropdown">
                     <button class="dropbtn">PaymentPage</button>
                     <div class="dropdown-content">
-                        <a href="{% url 'manage' %}">Subpage 1</a>
-                        <a href="#">Subpage 2</a>
-                        <a href="#">Subpage 3</a>
+                        <!-- <a href="{% url 'manage' %}">Subpage 1</a> -->
+                        <a href="{% url 'supply_item' %}">Supplypay</a>
+                        <a href="{% url 'invent' %}">sitterpay</a>
+                        <a href="{% url 'payment_form' %}">babypay</a>
+                        
                     </div>
                 </div>
-                <!-- SitterPage dropdown -->
+                
                 <div class="dropdown">
                     <button class="dropbtn">SitterPage</button>
                     <div class="dropdown-content">
@@ -64,16 +67,11 @@
         <h1 style="margin-bottom: 20px;"><b>Daystar Daycare</b></h1>
     </div>
     
-    <!-- <div class="search-bar">
-        <input type="text" placeholder="Search login area">
-        <a href="{% url 'login_view' %}" class="search-icon">
-            <i class="bi bi-search"></i>
-        </a>
-    </div> -->
+    
     
 </div>
 
-<div class="closer" style="background-color: #f3eeee;">
+<!-- <div class="closer" style="background-color: #f3eeee;">
     <div class="container">
         <div class="row">
             <div class="col-md-6" style="display: flex; align-items: center;">
@@ -146,9 +144,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<footer>
+<!-- <footer>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -156,7 +154,7 @@
             </div>
         </div>
     </div>
-</footer> 
+</footer>  -->
 
 <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 <script src="{% static 'javascript/script.js' %}"></script>

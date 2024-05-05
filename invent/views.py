@@ -1,9 +1,20 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
+# views.py
+
+from django.shortcuts import render, redirect
+from .forms import PaymentForm
+from .models import Payment
+
+def invent(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('invent')
+    else:
+        form = PaymentForm()
+
+    payments = Payment.objects.all()
+    return render(request, 'invent.html', {'form': form, 'payments': payments})
 
 
 
-def invent_view(request):
-    template = loader.get_template('invent.html')
-    return HttpResponse(template.render())

@@ -1,0 +1,6 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ baby_name }}"?</p>
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'BabyArrivalForm' %}">Cancel</a>
+</form>

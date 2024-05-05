@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Items</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .table th {
+            background-color: #ed83b5;
+            color:white
+        }
+
+        .card form button[type="submit"] {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ed83b5;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .card form button[type="submit"]:hover {
+            background-color: #c35886;
+        }
+
+        .card form input[type="text"],
+        .card form input[type="number"],
+        .card form input[type="date"],
+        .card form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ed83b5;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 12px;
+            /* height: 40px;
+            vertical-align: middle; */
+        }
+    </style>
+</head>
+<body>
+    <div class="card" style="width: 35%;">
+        <h2>Issue Items</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <hr>
+    
+    <div class="card">
+        <h2>Issued Items</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Issued on</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issuing in issuings %}
+                <tr>
+                    <td>{{ issuing.item.name }}</td>
+                    <td>{{ issuing.quantity }}</td>
+                    <td>{{ issuing.date_issued }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Record Keeping System</title>
+</head>
+<body>
+    <h1>Payment Record Keeping System</h1>
+    
+    <h2>Record Payment</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Record Payment</button>
+    </form>
+
+    
+    <h2>Payments</h2>
+    <table>
+        <tr>
+            <th>Sitter</th>
+            <th>Payment Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for payment in payments %}
+            <tr>
+                <td>{{ payment.sitter }}</td>
+                <td>{{ payment.payment_type }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.payment_date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

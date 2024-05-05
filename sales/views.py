@@ -5,7 +5,7 @@ from .filters import ProductFilter
 from .forms import MadeSaleForm, AddForm
 from django.contrib.auth.decorators import login_required
 
-@login_required
+# @login_required
 def manage(request):
     products = Product.objects.all().order_by('-id')
     product_filters = ProductFilter(request.GET, queryset=products)
@@ -30,11 +30,9 @@ def issue_item(request, pk):
             issued_item.total_quantity -= issued_quantity
             issued_item.save()
 
-            print(issued_item.doll_name)
-            print(request.POST['quantity'])
-            print(issued_item.total_quantity)
+            return redirect('receipt_detail', receipt_id=new_sale.id)  
 
-            return redirect('receipt')
+ 
 
     return render(request, 'issue_item.html', {'made_sales_form': made_sales_form})
 
@@ -79,6 +77,7 @@ def receipt(request):
 def receipt_detail(request, receipt_id):
     receipt = Sale.objects.get(id=receipt_id)
     return render(request, 'receipt_detail.html', {'receipt': receipt})
+
 
 @login_required
 def made_sales(request):

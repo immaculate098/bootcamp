@@ -33,13 +33,20 @@
         margin-top: 0px;
         margin-bottom: 0px;
       }
+
+      .logo-img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
     </style>
 
-    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: black; position: fixed; top: 0; width: 100%; z-index: 1;"> 
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px; z-index: 1;"> 
       <a class="navbar-brand" href="">
-        <img src="{% static 'images/logo.jpg' %}" alt="logo" class="logo-img">
+        <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
       </a>
-      <a class="nav-link" href=""><h1 class="navbar-brand" style = "font-size: 25px; color: white;">DOLL STORE PAYMENTS</h1></a>
+      <a class="nav-link" href="#"><h1 class="navbar-brand" style = "font-size: 25px; color: black;">DOLL STORE PAYMENTS</h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,13 +54,13 @@
         <ul class="nav navbar-nav ml-auto">
          {% if user.is_authenticated%}
             <li class="nav-item">
-              <a style="font-weight: bolder;  color: white;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+              <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
             </li>
             <li class="nav-item">
-              <a style="font-weight: bolder;  color: white;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
+              <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
             </li>
             <li class="nav-item">
-              <a  style="font-weight: bolder;  color: white;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
+              <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
             </li>
             
          
@@ -62,22 +69,38 @@
    </nav>
 
 
+   <div class="container">
+    <form method="GET" action="" style="margin-right: 450px;">
+      {{ products_filter.form }} <br>
+      <input type="submit" value="Search dolls" class="btn btn-info btn" style="background-color: #ed83b5;">
+    </form>
+  </div>
+  <br><br>
 
-<div class="container">
-  <form method="GET" action="" style="margin-right: 450px;">
-    {{ products_filter.form }}
-    <input type="submit" value="Search spareparts" class="btn btn-info btn"/>
-  </form>
-</div>
-<br><br>
-<div class="container">
-  <h1 class="text-center">ITEMS IN STOCK</h1>
-</div>
-<br>
+  <div class="container">
+    <h1 class="text-center">DOLLS IN STOCK</h1><br>
+    <div class="row">
+      {% for product in products %}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.doll_name }}</h5>
+            <div class="image-container">
+              <img src="{{ product.image_url }}" alt="{{ product.doll_name }}" class="card-img-top">
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+
+   <br>
 
 <div class="container">
   <table class="table">
-    <thead class="thead-dark">
+    <thead class="salon"  style="background-color: #ed83b5; color: white; ">
       <tr>
         <th scope="col">Category</th>
         <th scope="col">Item Name</th>
@@ -95,7 +118,7 @@
         <td>UGX{{ product.unit_price }}</td>
         <td>
           <a href="{% url 'product_detail' product.id %}">
-            <input type="submit" value="PURCHASE ITEM" class="btn btn-info btn" style="color: skyblue;" />
+            <input type="submit" value="PURCHASE ITEM" class="btn btn-info btn" style="background-color: #ed83b5; color: white;" />
           </a>
         </td>
       </tr>
@@ -103,8 +126,17 @@
     {% endfor %}
   </table>
 </div>
-<br><br><br><br><br><br><br><br><br>
+<br><br>
 {% endblock %}
+
+
+
+<footer class="mt-auto mb-4">
+  <div class="text-center">
+      <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+  </div>
+</footer>
+
 
 </body>
 </html>
