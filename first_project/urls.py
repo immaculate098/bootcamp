@@ -28,12 +28,12 @@ urlpatterns = [
     path('', include('newsitter.urls')),
     path('', include('sitterduty.urls')),
     path('', include('babyform.urls')),
-    path('', include('newbaby.urls')),
     path('', include('babycheck.urls')),
     path('', include('sales.urls')),
     path('', include('supply.urls')),
     path('', include('invent.urls')),
     path('', include('sitterlist.urls')),
+    path('', include('dashboard.urls')),
     
 ]
 

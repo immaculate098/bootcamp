@@ -4,89 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby Detail</title>
+
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <title style="color: black">DAYSTAR DOLL STORE</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
-        body {
-            background-color: #5de0ed;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #000; 
-            padding: 8px;
-            text-align: left;
-            background-color: whitesmoke; 
-            color: #000; 
-        }
-        th {
-            background-color: #ed83b5; 
-            color: #fff;
-        }
-        h1 {
-            color: #000; 
-        }
-        a.cancel-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ed83b5; 
-            color: #fff; 
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        a.cancel-button:hover {
-            background-color: #b34f8f; 
-        }
-    </style>
+        .card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+h1 {
+    color: #000000;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+    background-color: #f2f2f2;
+    color: #000000;
+}
+
+th {
+    background-color: #ed83b5;
+    color: #ffffff;
+}
+
+.cancel-button {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #ed83b5;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.cancel-button:hover {
+    background-color: #b34f8f;
+}
+.center-footer {
+    width: 100%;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+body,html {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      .logo-img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+      .salon,.salon2{
+        background-color: #ed83b5;
+        color: white;
+      }
+</style>
 </head>
 <body>
-    <h1>{{ baby.name }} Details</h1>
-    <table>
-        <tr>
-            <th>Attribute</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>{{ baby.gender }}</td>
-        </tr>
-        <tr>
-            <td>Age</td>
-            <td>{{ baby.age }}</td>
-        </tr>
-        <tr>
-            <td>Location</td>
-            <td>{{ baby.location }}</td>
-        </tr>
-        <tr>
-            <td>Brought By</td>
-            <td>{{ baby.brought_by }}</td>
-        </tr>
-        
-        {% if request.GET.show_additional_fields %}
-        <tr>
-            <td>Arrival Time</td>
-            <td>{{ baby.arrival_time }}</td>
-        </tr>
-        <tr>
-            <td>Parents' Names</td>
-            <td>{{ baby.parents_names }}</td>
-        </tr>
-        <tr>
-            <td>Fee</td>
-            <td>{{ baby.fee }}</td>
-        </tr>
-        <tr>
-            <td>Period of Stay</td>
-            <td>{{ baby.period_of_stay }}</td>
-        </tr>
-        <tr>
-            <td>Baby Number</td>
-            <td>{{ baby.baby_number }}</td>
-        </tr>
-        {% endif %}
-        
-    </table><br>
-    <a href="{% url 'baby_list' %}" class="cancel-button">Cancel</a>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px;z-index: 1;"> 
+        <a class="navbar-brand" href="">
+          <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
+        </a>
+        <a class="nav-link" href=""><h1 class="navbar-brand" style = "font-size: 25px; color: black;">DOLL STORE PAYMENTS</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav navbar-nav ml-auto">
+           {% if user.is_authenticated%}
+              <li class="nav-item">
+                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
+              </li>
+              <li class="nav-item">
+                <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
+              </li>
+              
+           
+            {% endif %}
+          </ul>
+     </nav><br><br><br><br><br>
+
+    <div class="card">
+        <h1>{{ baby.name }} Details</h1>
+        <div class="details">
+            <p>Gender: {{ baby.gender }}</p>
+            <p>Age: {{ baby.age }}</p>
+            <p>Location: {{ baby.location }}</p>
+            <p>Brought By: {{ baby.brought_by }}</p>
+            {% if request.GET.show_additional_fields %}
+            <p>Arrival Time: {{ baby.arrival_time }}</p>
+            <p>Parents' Names: {{ baby.parents_names }}</p>
+            <p>Fee: {{ baby.fee }}</p>
+            <p>Period of Stay: {{ baby.period_of_stay }}</p>
+            <p>Baby Number: {{ baby.baby_number }}</p>
+            {% endif %}
+        </div>
+        <a href="{% url 'baby_list' %}" class="cancel-button" style="margin-left: 5px;">Cancel</a>
+    </div>
+<footer class="mt-auto mb-4 center-footer">
+        <div class="text-center">
+            <span>
+                Copyright &copy;
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                DayStar DayCare
+            </span>
+        </div>
+</footer>
 </body>
 </html>

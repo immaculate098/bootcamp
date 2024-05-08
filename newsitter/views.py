@@ -1,7 +1,10 @@
 
 from django.shortcuts import render, redirect
 from .forms import PaymentForm
-from .models import Payment
+from .models import *
+from django.contrib.auth.decorators import login_required
+
+@login_required
 
 def payment_form(request):
     if request.method == 'POST':
@@ -16,7 +19,7 @@ def payment_form(request):
             else:
                 specified_amount = 0  
             
-            payment.change_received = max(0, specified_amount - payment.amount_paid)
+            payment.change_received = max(0, specified_amount - float(payment.amount_paid))
             payment.save()
             return redirect('payment_success', 
                             baby_name=payment.baby_name,
@@ -30,7 +33,7 @@ def payment_form(request):
         form = PaymentForm()
     return render(request, 'payment_form.html', {'form': form})
 
-
+@login_required
 def payment_success(request, baby_name, amount_paid, date_paid, payment_type, change_received):
     payment = {
         'baby_name': baby_name,

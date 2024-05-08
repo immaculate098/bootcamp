@@ -27,7 +27,7 @@
                         <a class="nav-link" href="{% url 'immy_view' %}"><i class="fa-solid fa-list fa-lg"></i>All sitters</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add' %}"><i class="fa-solid fa-plus fa-lg"></i>Add Sitter</a>
+                        <a class="nav-link" href="{% url 'added' %}"><i class="fa-solid fa-plus fa-lg"></i>Add Sitter</a>
                     </li>
                 </ul>
                 
@@ -50,10 +50,20 @@
                         <i class="fa-solid fa-address-book fa-lg"></i>sitter regestration
                     </div>
                 <div class="card-body">
-                 <form action="{% url 'add' %}" method="POST">
+                 <form action="{% url 'added' %}" method="POST">
                         
                         
                    {% csrf_token %}
+                   <div style="color: red;">
+                    Please correct the following errors:
+                    <ul>
+                        {% for field, error_list in form.errors.items %}
+                            {% for error in error_list %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
                    {{ form.as_p }}
                  <button type="submit" class="blue">Add</button>
                 <button type="submit" class="blue2"><a href="{% url 'immy_view' %}">Cancel</a></button> 

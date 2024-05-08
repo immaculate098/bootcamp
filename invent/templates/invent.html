@@ -1,21 +1,81 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Record Keeping System</title>
+    <style>
+ 
+
+.form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+
+form input[type="text"],input[type="number"],
+form select {
+    width: calc(100% - 22px); 
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ed83b5;
+    border-radius: 5px;
+}
+
+
+form button[type="submit"] {
+    background-color: #ed83b5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+
+table th {
+    background-color: #ed83b5;
+    color: white;
+    padding: 10px;
+}
+
+/* Table cells */
+table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Alternate row color */
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+    </style>
 </head>
 <body>
-    <h1>Payment Record Keeping System</h1>
+    <h1> Sitter Payment Record Keeping System</h1><br>
     
-    <h2>Record Payment</h2>
+   
+    <div class="form-container">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Record Payment</button>
     </form>
-
+</div>
     
     <h2>Payments</h2>
     <table>
@@ -24,6 +84,7 @@
             <th>Payment Type</th>
             <th>Amount</th>
             <th>Date</th>
+            <th>babies_attended </th>
         </tr>
         {% for payment in payments %}
             <tr>
@@ -31,6 +92,7 @@
                 <td>{{ payment.payment_type }}</td>
                 <td>{{ payment.amount }}</td>
                 <td>{{ payment.payment_date }}</td>
+                <td>{{ payment.babies_attended }}</td>
             </tr>
         {% endfor %}
     </table>

@@ -1,4 +1,3 @@
-# forms.py
 
 from django import forms
 from .models import Payment, Sitter
@@ -6,7 +5,7 @@ from .models import Payment, Sitter
 
 class PaymentForm(forms.ModelForm):
     sitter = forms.ModelChoiceField(queryset=Sitter.objects.all())
-    payment_type = forms.ChoiceField(choices=[('Half Day', 'Half Day'), ('Full Day', 'Full Day'), ('Monthly', 'Monthly')])
+    payment_type = forms.ChoiceField(choices=[ ('Monthly', 'Monthly')])
     babies_attended = forms.IntegerField(label='Number of Babies Attended', min_value=1)
     amount = forms.DecimalField() 
     
@@ -21,11 +20,8 @@ class PaymentForm(forms.ModelForm):
         babies_attended = cleaned_data.get('babies_attended')
 
         if sitter and babies_attended:
-            if payment_type == 'Half Day':
-                cleaned_data['amount'] = 10000 * babies_attended
-            elif payment_type == 'Full Day':
-                cleaned_data['amount'] = 15000 * babies_attended
-            elif payment_type == 'Monthly':
+            if payment_type == 'Monthly':
+            
                 cleaned_data['amount'] = 3000 * babies_attended * 30  
 
         

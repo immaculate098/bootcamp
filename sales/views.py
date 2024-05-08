@@ -5,7 +5,7 @@ from .filters import ProductFilter
 from .forms import MadeSaleForm, AddForm
 from django.contrib.auth.decorators import login_required
 
-# @login_required
+@login_required
 def manage(request):
     products = Product.objects.all().order_by('-id')
     product_filters = ProductFilter(request.GET, queryset=products)

@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Sitter
 from .forms import SitterForm
 from django.views import View
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def sitter_management(request):
     if request.method == 'POST':
         filter_value = request.POST.get('filter')
@@ -27,7 +28,7 @@ def sitter_management(request):
     return render(request, 'sitterduty.html', {'sitters': sitters})
 
 
-
+@login_required
 def add_sitter(request):
     if request.method == 'POST':
         form = SitterForm(request.POST)
@@ -37,6 +38,9 @@ def add_sitter(request):
     else:
         form = SitterForm()
     return render(request, 'add_sitter.html', {'form': form})
+
+
+@login_required
 
 def save_changes(request):
     if request.method == 'POST': 
@@ -58,6 +62,7 @@ class DeleteSitterView(View):
         sitter = Sitter.objects.get(id=sitter_id)
         sitter.delete()
         return redirect('sitter_management')
+
 
 class UpdateSitterView(View):
     def get(self, request, sitter_id):

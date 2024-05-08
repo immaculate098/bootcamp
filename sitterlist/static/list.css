@@ -1,10 +1,8 @@
-body {
-    background-color: #5de0e6; /* Set background color */
+.body {
+    background-color:whitesmoke
 }
 
-.custom-bg-ed83b5 {
-    background-color: #ed83b5 !important;
-}
+
 
 
 .red{
@@ -41,11 +39,7 @@ body {
     border-color: #ed83b5;
 }
 
-.custom-btn-ed83b5 {
-    background-color: #ed83b5; 
-    border-color: #ed83b5; 
-    color: #ffffff; 
-}
+
 
 .blue{
     color: black;

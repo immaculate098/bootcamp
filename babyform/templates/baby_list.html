@@ -4,73 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby List</title>
+
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <title style="color: black">DAYSTAR DOLL STORE</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #5de0e6; 
-            margin: 0;
-            padding: 0;
-        }
-        table {
-            width: 90%;
-            border-collapse: collapse;
-            border: 2px solid #000; 
-            margin-left: 50px;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #000; 
-            border-right: 1px solid #000; 
-            background-color: whitesmoke; 
-            word-wrap: break-word; 
-        }
-        th {
-            background-color: #ed83b5;
-            color: #fff;
-            border-top: 2px solid #ed83b5;
-        }
-        tr:hover {
-            background-color: #f2f2f2;
-        }
-        .add-button {
-            
-            width: auto; 
-            margin-left: 100%;
-            padding: 10px 20px;
-            border: none;
-            background-color: #ed83b5; 
-            color: #fff;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-        .add-button:hover {
-            background-color: #ed83b5; 
-        }
-        .action-links {
-            white-space: nowrap;
-        }
-        .action-links a {
-            margin-right: 5px;
-            display: inline-block; 
-            padding: 8px 16px; 
-            background-color: #ed83b5; 
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .action-links a:hover {
-            background-color: #ed83b5; 
-        }
-    </style>
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* width: 100vw; 
+    margin: 0 auto; */
+}
+
+.container:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* width: 100vw; 
+    margin: 0 auto; */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #ed83b5;
+    color: #fff;
+    border-top: 2px solid #ed83b5;
+}
+
+tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+.add-button {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border: none;
+    background-color: #ed83b5;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.add-button:hover {
+    background-color: #d95f99;
+}
+
+.action-links a {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 8px 16px;
+    background-color: #ed83b5;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.action-links a:hover {
+    background-color: #d95f99;
+}
+
+body,html {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      .logo-img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+      .salon,.salon2{
+        background-color: #ed83b5;
+        color: white;
+      }
+        
+</style>
+        
 </head>
 <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px;z-index: 1;"> 
+        <a class="navbar-brand" href="">
+          <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
+        </a>
+        <a class="nav-link" href=""><h1 class="navbar-brand" style = "font-size: 25px; color: black;">DOLL STORE PAYMENTS</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav navbar-nav ml-auto">
+           {% if user.is_authenticated%}
+              <li class="nav-item">
+                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
+              </li>
+              <li class="nav-item">
+                <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
+              </li>
+              
+           
+            {% endif %}
+          </ul>
+     </nav><br><br><br><br>
+  
+
     <h1 style="text-align: center;">Baby List</h1>
-    <a href="{% url 'baby_create' %}" class="add-button" style="display: block; margin-left: 50px; width: 150px;">Add Baby</a><br>
+    <a href="{% url 'baby_create' %}" class="add-button" style="display: block; margin-left: 60px; width: 150px;">Add Baby</a>
     <table>
         <thead>
             <tr>
@@ -80,6 +165,7 @@
                 <th>Age</th>
                 <th>Location</th>
                 <th>Brought By</th>
+               
             </tr>
         </thead>
         <tbody>
@@ -96,10 +182,23 @@
                 <td>{{ baby.age }}</td>
                 <td>{{ baby.location }}</td>
                 <td>{{ baby.brought_by }}</td>
+                
             </tr>
             {% endfor %}
         </tbody>
-    </table>
+    </table><br><br><br><br><br>
     
+    <footer class="mt-auto mb-4" >
+        <div class="text-center">
+          <span
+            >Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            DayStar DayCare</span
+          >
+        </div>
+      </footer>
+
 </body>
 </html>

@@ -1,9 +1,9 @@
-# views.py
-
 from django.shortcuts import render, redirect
 from .forms import PaymentForm
 from .models import Payment
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def invent(request):
     if request.method == 'POST':
         form = PaymentForm(request.POST)

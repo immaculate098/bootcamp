@@ -9,12 +9,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'list.css' %}">
     <style>
-        /* Custom CSS for edit page */
+        
         .form-container {
             background-color: whitesmoke;
             padding: 20px;
             border-radius: 5px;
             margin-top: 20px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #f5c7dc;
+            box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25); 
+    
+            border-radius: 5px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -33,7 +42,7 @@
                         <a class="nav-link" href="{% url 'immy_view' %}"><i class="fa-solid fa-list fa-lg"></i>All sitters</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'add' %}"><i class="fa-solid fa-plus fa-lg"></i>Add Sitter</a>
+                        <a class="nav-link" href="{% url 'added' %}"><i class="fa-solid fa-plus fa-lg"></i>Add Sitter</a>
                     </li>
                 </ul>
                 
@@ -42,7 +51,7 @@
     </nav>
 
     <div class="container-fluid">
-        <h3 class="m-4">Edit Sitter Details</h3>
+        <h3 class="m-4" style="color: #ed83b5;">Edit Sitter Details</h3>
         <div class="row">
             <div class="col-md-6 offset-md-3 form-container">
                 <form method="post">

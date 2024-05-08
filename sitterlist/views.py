@@ -4,24 +4,27 @@ from django.urls import reverse
 from.models import Student
 from.forms import StudentForm
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def immy_view(request):
     students = Student.objects.all()
     return render(request, 'sitterlist.html', {'students':students})
 
+@login_required
 def view_student(request,id):
     student =Student.objects.get(pk=id)
     return HttpResponseRedirect(reverse('index'))
 
-def add(request):
-    if request.method =='POST':
-        form=StudentForm(request.POST)
+@login_required
+def added(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
         if form.is_valid():
             new_sitter_name = form.cleaned_data['name']
             new_sitter_gender = form.cleaned_data['gender']
             new_sitter_location = form.cleaned_data['location']
-            new_sitter_date_of_birth = form.cleaned_data ['date_of_birth']
+            new_sitter_date_of_birth = form.cleaned_data['date_of_birth']
             new_sitter_nin = form.cleaned_data['nin']
             new_sitter_religion = form.cleaned_data['religion']
             new_sitter_education = form.cleaned_data['education']
@@ -32,38 +35,39 @@ def add(request):
             new_sitter_recommender_contact = form.cleaned_data['recommender_contact']
 
             new_student = Student(
-                name= new_sitter_name,
-                gender= new_sitter_gender  ,
-                location=  new_sitter_location ,
-                date_of_birth= new_sitter_date_of_birth,
-                nin=  new_sitter_nin,
-                religion= new_sitter_religion ,
-                education= new_sitter_education,
-                contact=  new_sitter_contact,
-                sitter_number=  new_sitter_number,
-                next_of_kin= new_sitter_next_of_kin,
+                name=new_sitter_name,
+                gender=new_sitter_gender,
+                location=new_sitter_location,
+                date_of_birth=new_sitter_date_of_birth,
+                nin=new_sitter_nin,
+                religion=new_sitter_religion,
+                education=new_sitter_education,
+                contact=new_sitter_contact,
+                sitter_number=new_sitter_number,
+                next_of_kin=new_sitter_next_of_kin,
                 recommender_name=new_sitter_recommender_name,
-                recommender_contact= new_sitter_recommender_contact
+                recommender_contact=new_sitter_recommender_contact
             )
-        new_student.save()
-        return render(request, 'add.html',{
-          'form': StudentForm(),  
-          'success': True,
-        })
+            new_student.save()  # This line should be indented inside the is_valid() block
+
+            return render(request, 'add.html', {
+                'form': StudentForm(),
+                'success': True,
+            })
     else:
-       form=StudentForm()
-    return render(request, 'add.html',{
-      'form': StudentForm()  
-      
+        form = StudentForm()
+
+    return render(request, 'add.html', {
+        'form': form
     })
 
-
+@login_required
 def delete_student(request, id):
     student = get_object_or_404(Student, id=id)
     student.delete()
     return redirect('immy_view') 
 
-
+@login_required
 def edit_student(request, id):
     student = get_object_or_404(Student, id=id)
 

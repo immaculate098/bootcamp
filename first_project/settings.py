@@ -43,12 +43,12 @@ INSTALLED_APPS = [
     'newsitter',
     'sitterduty',
     'babyform',
-    'newbaby',
     'babycheck',
     'sales',
     'supply',
     'invent',
     'sitterlist',
+    'dashboard'
     
     
 ]
@@ -151,12 +151,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 
+LOGIN_URL = '/login/'
+
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'nayigaimmaculate098@gmail.com'  # Replace with your Gmail address
-EMAIL_HOST_PASSWORD = 'sflq pxqg kzos znwd'  # Replace with your Gmail password
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'nayigaimmaculate098@gmail.com' 
+# EMAIL_HOST_PASSWORD = 'sflq pxqg kzos znwd' 
 
 
