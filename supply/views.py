@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import SupplyForm, IssuingForm
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
 
-@login_required
 def supply_item(request):
     if request.method == 'POST':
         form = SupplyForm(request.POST)
@@ -16,7 +14,7 @@ def supply_item(request):
     supplies = Supply.objects.all()
     return render(request, 'supply.html', {'form': form, 'supplies': supplies})
 
-@login_required
+
 def issue_item(request):
     if request.method == 'POST':
         form = IssuingForm(request.POST)
@@ -38,8 +36,6 @@ def issue_item(request):
     return render(request, 'issue.html', {'form': form, 'issuings': issuings})
 
 
-
-@login_required
 def add_supply(request):
     if request.method == 'POST':
         form = SupplyForm(request.POST)

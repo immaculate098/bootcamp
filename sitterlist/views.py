@@ -4,19 +4,19 @@ from django.urls import reverse
 from.models import Student
 from.forms import StudentForm
 from django.shortcuts import redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
 
-@login_required
+
+
 def immy_view(request):
     students = Student.objects.all()
     return render(request, 'sitterlist.html', {'students':students})
 
-@login_required
+
 def view_student(request,id):
     student =Student.objects.get(pk=id)
     return HttpResponseRedirect(reverse('index'))
 
-@login_required
+
 def added(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
@@ -61,13 +61,13 @@ def added(request):
         'form': form
     })
 
-@login_required
+
 def delete_student(request, id):
     student = get_object_or_404(Student, id=id)
     student.delete()
     return redirect('immy_view') 
 
-@login_required
+
 def edit_student(request, id):
     student = get_object_or_404(Student, id=id)
 

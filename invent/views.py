@@ -3,6 +3,7 @@ from .forms import PaymentForm
 from .models import Payment
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def invent(request):
     if request.method == 'POST':

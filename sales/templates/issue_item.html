@@ -90,6 +90,15 @@
         border-radius: 50%;
         margin-left: 10px;
       }
+      input[type="text"], input[type="date"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #f5c7dc;
+            box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25); 
+    
+            border-radius: 5px;
+            font-size: 16px;
+        }
     </style>
 
     <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px;z-index: 1;"> 
@@ -121,7 +130,7 @@
 
 <div class="container">
   <h1 class="text-center">SALES FORM</h1>
-  <form method="POST" action="" style="border-radius: 25px; border: 5px solid #ed83b5; padding: 20px; width: 400px; height: 480px; margin-left: 400px;">
+  <form method="POST" action="" style="border-radius: 25px; border: 5px solid #f5c7dc; padding: 20px; width: 400px; height: 680px; margin-left: 400px;">
     {% csrf_token %}
     {{ made_sales_form.as_p }}
     <input type="submit" class="btn-info btn" type="button" value="CONFIRM SALE" style="background-color: #ed83b5;">
@@ -131,7 +140,7 @@
 <br>
 {% endblock %}
 <br>
-<footer class="mt-auto mb-4">
+<footer class="mt-auto mb-4" style="width: 100% ;padding: 30px; background-color: #5de0e6;">
   <div class="text-center">
       <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
   </div>

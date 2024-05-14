@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment List</title>
+    {% load static %}
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+    />
+    <title style="color: black">BABY DEPARTURE FORM</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Raleway"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Montserrat"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+ body {
+            background-color: whitesmoke;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h4 {
+            text-align: center;
+            font-size: 24px;
+            color: #ed83b5;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        form {
+            margin-right: 150px; 
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 7px;
+            margin-bottom: 5px;
+            color: #ed83b5;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 50%; 
+            padding: 10px;
+            border: 2px solid #f5c7dc;
+            border-radius: 5px;
+            box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #ed83b5;
+            box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25);
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            background-color: #ed83b5;
+            color: white;
+            border: none;
+            width: 170px; 
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px;
+            transition: background-color 0.8s, color 0.7s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ed83b5;
+        }
+
+        .table-responsive {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ed83b5;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #5de0e6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
+.navbar-brand img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.navbar-brand h1 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-top: 25px;
+}
+
+.navbar-toggler-icon {
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ed83b5;
+}
+
+
+    .logo-img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+    </style>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark "
+     style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px; z-index: 1;">
+    <a class="navbar-brand" href="">
+        <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
+    </a>
+    <a class="nav-link" href=""><h1 class="navbar-brand" style="font-size: 25px; color: black;">DOLL STORE PAYMENTS</h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a style="font-weight: bolder;  color: black;" class="nav-link"
+                       href="{% url 'receipt'%}">RECEIPTS</a>
+                </li>
+                <li class="nav-item">
+                    <a style="font-weight: bolder;  color: black;" class="nav-link"
+                       href="{% url 'made_sales'%}">ALL SALES</a>
+                </li>
+
+
+            {% endif %}
+        </ul>
+    </div>
+</nav><br><br><br><br><br><br>
+
+    <h4>PAYMENT LIST</h4><br><br>
+    <form action="" method="GET" style="margin-right:450px;">
+        {{ payment_filter.form.as_p }} <br>
+        <input type="submit" value="Search baby name"  style="width:170px; color: white; background-color: #ed83b5; border-radius: 10px;"/>
+    </form>
+    <br>
+    <button type="submit" style=" background-color: #ed83b5;" ><a href="{% url 'payment_lists' %}"style="color:white;>">Add Payment </a></button>
+    <br><br>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Baby Name</th>
+                    <th scope="col">Payment Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Actual Amount</th>
+                    <th scope="col">Amount Paid</th>
+                    <th scope="col">Total Balance</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payment_list %}
+                <tr>
+                    <td>{{ payment.id }}</td>
+                    <td>{{ payment.baby_name }}</td>
+                    <td>{{ payment.payment_type }}</td>
+                    <td>{{ payment.date }}</td>
+                    <td>UGX{{ payment.actual_amount }}</td>
+                    <td>UGX{{ payment.amount_paid }}</td>
+                    <td>UGX{{ payment.get_balance }}</td>
+                    
+                    <td>
+                        <button type="submit" ><a href="{% url 'edit_payment' id=payment.id %}" style="color:white;" >Edit</a></button>
+                    </td>  
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
+        <div class="text-center">
+            <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+        </div>
+    </footer>
+</body>
+</html>

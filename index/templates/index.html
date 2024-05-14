@@ -14,11 +14,10 @@
     
 </head>
 <style>
-    <style>
-    .navbar {
+ .navbar {
         padding-bottom: 0%;
         background-color: #55ddee;
-        overflow: hidden; 
+       
     }
 
     .navbar-menu {
@@ -70,13 +69,16 @@
         display: none;
         color: black;
     }
-</style>
-
+    
+    .closer {
+        background-color: #f3eeee;
+        margin-top: -60px;
+    }
 </style>
 
 
 <body>                      
-    <div class="navbar" style="padding-bottom: 0%; background-color: #55ddee ">
+    <div class="navbar">
         <div class="navbar-menu">
             <div class="dropdown">
                 <button class="dropbtn" onclick="toggleMenu()">&#9776;<span class="menu-text">Menu</span></button>
@@ -84,7 +86,6 @@
                     <div class="dropdown">
                         <button class="dropbtn" onclick="toggleDropdownContent('babyFeatures')">BabyPage</button>
                         <div class="dropdown-content" id="babyFeatures" style="display:none;">
-                            <a href="{% url 'dashboard' %}">Dashboard</a>
                             <a href="{% url 'baby_list' %}">Baby List</a>
                             <a href="{% url 'departure_form' %}">Checkout</a>
                         </div>
@@ -94,7 +95,7 @@
                         <div class="dropdown-content" id="paymentFeatures" style="display:none;">
                             <a href="{% url 'supply_item' %}">Supplypay</a>
                             <a href="{% url 'manage' %}">DollsPay</a>
-                            <a href="{% url 'payment_form' %}">babypay</a>
+                            <a href="{% url 'paymentform' %}">babypay</a>
                         </div>
                     </div>
                     <div class="dropdown">
@@ -110,33 +111,87 @@
         </div>
     </div>
      
+     
 <div class="closer" style="background-color: #f3eeee;margin-top: -60px;">
 
 
-<div class="container">
-        <div class="row">
+    <div class="closer">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-title" style="display: flex; align-items: center; justify-content: center; margin-bottom: 5%;">
+                    <img src="{% static 'images/daystarlogo.png' %}" alt="Logo" style="height: 100px; width: auto; margin-right: 10px; border-radius: 50%;"> 
+                    <h1 style="margin-bottom: 20px;"><b>Daystar Daycare</b></h1>
+                </div>
 
-            <div class="navbar-title" style="display: flex; align-items: center; justify-content: center; margin-bottom: 5%;">
-                <img src="{% static 'images/daystarlogo.png' %}" alt="Logo" style="height: 100px; width: auto; margin-right: 10px; border-radius: 50%;"> 
-                <h1 style="margin-bottom: 20px;"><b>Daystar Daycare</b></h1>
-            </div>
+                <div class="col-md-6" style="display: flex; align-items: center;">
+                    <div class="line"></div>
+                    <div class="content">
+                        <h1 id="self-writing-text"></h1>
+                        <p>DayStar is a curriculum-based daycare and preschool providing half-day and full-day programs for infants through five years of age.</p><br>
+                        <a href="{% url 'login_view' %}" class="zoom-btn">learn more</a>
+                    </div>
+                </div>
 
-            <div class="col-md-6" style="display: flex; align-items: center;">
-                <div class="line"></div>
-                <div class="content">
-                    <h1 id="self-writing-text"></h1>
-                    <p>DayStar is a curriculum-based daycare and preschool providing half-day and full-day programs for infants through five years of age.</p><br>
-                    <a href="{% url 'login_view' %}" class="zoom-btn">learn more</a>
+                <div class="col-md-6">
+                    <div class="image-container" style="background-size: cover; ">
+                        <img src="{% static 'images/6.jpg' %}" alt="Daycare Image">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="image-container" style="background-size: cover; ">
-                    <img src="{% static 'images/6.jpg' %}">
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100" style="background-color: #ed83b5;">
+                    <img src="{% static 'images/blocks.png' %}" class="card-img-top" alt="Block Image" style="width: 80px; height: 80px; margin: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">Pre-nursery</h5>
+                        <p class="card-text">[6months - 12months]<br>Provides every child early education giving a head start for elementary for a love of learning to last a life time</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">read more</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: #fff48b;">
+                    <img src="{% static 'images/pencils.jpg' %}" class="card-img-top" alt="Pencils Image" style="width: 80px; height: 80px; margin: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">Nursery</h5>
+                        <p class="card-text">[12months-2years]<br>We offer opportunities for our nursery to grow and explore individuality,communications skills,literacy,hands on and numbers</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">read more</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100" style="background-color: #55ddee;">
+                    <img src="{% static 'images/books.jpeg' %}" class="card-img-top" alt="Books Image" style="width: 80px; height: 80px; margin: auto;background-color: #55ddee;">
+                    <div class="card-body">
+                        <h5 class="card-title">Kindergarten</h5>
+                        <p class="card-text">[2years-3years]<br>Following steps to solving problems, organising , controlling impulses and improving attention as a center of focus</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">read more</small>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2024 DAYSTAR DAYCARE. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
     <script>
         var text = "BUILDING YOUNG HEARTS ON CHRIST!";
         var index = 0;
@@ -153,55 +208,7 @@
         typeWriter();
     </script>
     
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card h-100" style="background-color: #ed83b5;">
-                <img src="{% static 'images/blocks.png' %}" class="card-img-top" alt="..." style="width: 80px; height: 80px; margin: auto;">
-                <div class="card-body">
-                    <h5 class="card-title">Pre-nursery</h5>
-                    <p class="card-text">[18months - 3years]<br>Provides every child early education giving a head start for elementary for a love of learning to last a life time</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">read more</small>
-                </div>
-            </div>
-        </div>
-        <div class="col" >
-            <div class="card h-100" style="background-color: #fff48b;">
-                <img src="{% static 'images/pencils.jpg' %}" class="card-img-top" alt="..." style="width: 80px; height: 80px; margin: auto;">
-                <div class="card-body">
-                    <h5 class="card-title">Nursery</h5>
-                    <p class="card-text">[3-4years]<br>We offer opportunities for our nursery to grow and explore individuality,communications skills,literacy,hands on and numbers</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">read more</small>
-                </div>
-            </div>
-        </div>
-        <div class="col" >
-            <div class="card h-100" style="background-color: #55ddee;">
-                <img src="{% static 'images/books.jpeg' %}" class="card-img-top" alt="..." style="width: 80px; height: 80px; margin: auto;background-color: #55ddee;">
-                <div class="card-body">
-                    <h5 class="card-title">Kindergarten</h5>
-                    <p class="card-text">[4-5years]<br>Following steps to solving problems, organising , controlling impulses and improving attention as a center of focus</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">read more</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<footer>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <p>&copy; 2024 DAYSTAR DAYCARE. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <script>
     function toggleMenu() {

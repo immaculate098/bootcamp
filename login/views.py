@@ -1,7 +1,6 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from .forms import LoginForm
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -9,15 +8,17 @@ def login_view(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            if username == "cripsy098" and password == "immaculate":  
-                # Here, "unique_username" is the unique username requirement.
-                messages.success(request, 'Login successful!')
-                return redirect('index_view')  
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # Redirect to a success page or somewhere else
+                return redirect('index_view')
             else:
-                messages.error(request, 'Invalid username or password!')
-                return render(request, 'login.html', {'form': form, 'error_message': 'Invalid username or password!'})
-        else:
-            messages.error(request, 'Invalid form data. Please check your input.')
+                # Return an error message or handle invalid login
+                return render(request, 'login.html', {'form': form, 'error_message': 'Invalid username or password'})
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
+
+
+

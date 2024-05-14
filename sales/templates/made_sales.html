@@ -94,6 +94,44 @@
         border-radius: 50%;
         margin-left: 10px;
       }
+
+      .container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.circular-container {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #5de0e6;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.circular-container h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.total-amount {
+  background-color: #ed83b5;
+}
+
+.total-change {
+  background-color: #5de0e6;
+}
+
+.net-amount {
+  background-color: #fff48b;
+}
+
     </style>
 
     <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px;z-index: 1;"> 
@@ -106,7 +144,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="nav navbar-nav ml-auto">
-         {% if user.is_authenticated%}
+         {% if user.is_authenticated %}
             <li class="nav-item">
               <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
             </li>
@@ -122,26 +160,22 @@
         </ul>
    </nav>
 
-
-<div class="container">
-  <h1 class="text-center">ALL MADE SALES</h1><br>
-  <table class="table">
-    <thead class="salon">
-      <tr>
-        <th scope="col">Total Amount Received</th>
-        <th scope="col">Total Change Given</th>
-        <th scope="col">Net Amount</th>
-      </tr>
-    </thead>  
-    <tbody>
-      <tr>    
-        <td>UGX{{ total }}</td>
-        <td>UGX{{ change }}</td>
-        <td>UGX{{ net }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+   <h1 class="text-center">ALL MADE SALES</h1><br><br>
+   <div class="container">
+    
+    <div class="circular-container total-amount">
+      <h3>Total Amount Received</h3>
+      <p>UGX{{ total }}</p>
+    </div>
+    <div class="circular-container total-change">
+      <h3>Total Change Given</h3>
+      <p>UGX{{ change }}</p>
+    </div>
+    <div class="circular-container net-amount">
+      <h3>Net Amount</h3>
+      <p>UGX{{ net }}</p>
+    </div>
+  </div>
 <br></br>
 
 <div class="container">

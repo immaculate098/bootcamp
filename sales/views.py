@@ -3,16 +3,16 @@ from django.http import HttpResponse
 from .models import Product, Sale
 from .filters import ProductFilter
 from .forms import MadeSaleForm, AddForm
-from django.contrib.auth.decorators import login_required
 
-@login_required
+
+
 def manage(request):
     products = Product.objects.all().order_by('-id')
     product_filters = ProductFilter(request.GET, queryset=products)
     products = product_filters.qs
     return render(request, 'manage.html', {'products': products, 'products_filter': product_filters})
 
-@login_required
+
 def issue_item(request, pk):
     issued_item = Product.objects.get(id=pk)
     made_sales_form = MadeSaleForm()
@@ -38,7 +38,7 @@ def issue_item(request, pk):
 
 
 
-@login_required
+
 def add_to_stock(request, pk):
     issued_item = Product.objects.get(id=pk)
 
@@ -63,23 +63,23 @@ def add_to_stock(request, pk):
 
 
 
-@login_required
+
 def product_detail(request, product_id):
     product = Product.objects.get(id=product_id)
     return render(request, 'product_details.html', {'product': product})
 
-@login_required
+
 def receipt(request):
     sales = Sale.objects.all()
     return render(request, 'receipt.html', {'sales': sales})
 
-@login_required
+
 def receipt_detail(request, receipt_id):
     receipt = Sale.objects.get(id=receipt_id)
     return render(request, 'receipt_detail.html', {'receipt': receipt})
 
 
-@login_required
+
 def made_sales(request):
     sales = Sale.objects.all()
     total = sum(item.amount_received for item in sales)

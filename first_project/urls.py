@@ -33,7 +33,8 @@ urlpatterns = [
     path('', include('supply.urls')),
     path('', include('invent.urls')),
     path('', include('sitterlist.urls')),
-    path('', include('dashboard.urls')),
+    path('', include('logout.urls')),
+    
     
 ]
 

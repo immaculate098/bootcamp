@@ -1,15 +1,17 @@
 
 from django.db import models
+from django.utils import timezone
 
 class Payment(models.Model):
-    PAYMENT_TYPES = (
-        ('halfday', 'Half Day'),
-        ('fullday', 'Full Day'),
-        ('monthlypay', 'Monthly Payment'),
-    )
+    baby_name = models.CharField(max_length=100, null=True, blank=False)
+    payment_type =models.CharField(choices=[('halfday', 'halfday'),('fullday', 'fullday'),('monthlyhalfday','monthlyhalfday') ,('monthlyfullfday','monthlyfullday')], max_length=100)
+    date=models.DateField(default=timezone.now)
+    actual_amount = models.IntegerField(default=0,choices=[(10000, '10000'),(15000, '15000'),(300000, '300000'),(450000, '450000')])
+    amount_paid = models.IntegerField(default=0)
+   
+    def _int_(self):
+      return self.baby_name  
+    def get_balance(self):
+        return self.actual_amount - self.amount_paid  
 
-    baby_name = models.CharField(max_length=100 , default='')
-    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
-    date_paid = models.DateField()
-    payment_type = models.CharField(max_length=20, default='pay', choices=PAYMENT_TYPES)
-    change_received = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+

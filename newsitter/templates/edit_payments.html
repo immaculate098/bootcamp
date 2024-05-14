@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Payment Form of Babies</title>
+    {% load static %}
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+    />
+    <title style="color: black">BABY DEPARTURE FORM</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Raleway"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Montserrat"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: whitesmoke;
+        }
+
+        h4 {
+            text-align: center;
+            font-size: 24px;
+            color: black;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #f5c7dc;
+            box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25);
+        }
+
+        .sitter-form {
+            display: grid;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            color: black;
+        }
+
+     
+
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+    width: 100%; 
+    padding: 10px;
+    border: 2px solid #f5c7dc;
+    border-radius: 5px;
+    box-shadow: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px; 
+}
+
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #ed83b5;
+    box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25);
+}
+
+
+.container select[name="baby_name"],
+.container select[name="amount"],
+.container input[name="baby_name"],
+.container input[name="amount"] {
+    width: 50%; 
+    margin-right: 20px; 
+    display: inline-block; 
+}
+.container input[name="baby_name"] {
+    width: 100%; 
+}
+        
+        button[type="submit"] {
+            margin-top: 20px;
+            background-color: #ed83b5;
+            color: white;
+            border: none;
+            width: 20%;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 10px;
+            transition: background-color 0.8s, color 0.7s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ed83b5;
+        }
+        
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #5de0e6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
+.navbar-brand img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.navbar-brand h1 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-top: 25px;
+}
+
+.navbar-toggler-icon {
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ed83b5;
+}
+
+
+    .logo-img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 10px;
+      }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark "
+    style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px; z-index: 1;">
+   <a class="navbar-brand" href="">
+       <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
+   </a>
+   <a class="nav-link" href=""><h1 class="navbar-brand" style="font-size: 25px; color: black;">DOLL STORE PAYMENTS</h1></a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="nav navbar-nav ml-auto">
+           {% if user.is_authenticated %}
+               <li class="nav-item">
+                   <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+               </li>
+               <li class="nav-item">
+                   <a style="font-weight: bolder;  color: black;" class="nav-link"
+                      href="{% url 'receipt'%}">RECEIPTS</a>
+               </li>
+               <li class="nav-item">
+                   <a style="font-weight: bolder;  color: black;" class="nav-link"
+                      href="{% url 'made_sales'%}">ALL SALES</a>
+               </li>
+
+
+           {% endif %}
+       </ul>
+   </div>
+</nav><br><br><br><br>
+
+<h4>EDIT PAYMENT FORM OF BABIES</h4>
+    <div class="container">
+        <form method="POST" class="sitter-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
+        <div class="text-center">
+            <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+        </div>
+    </footer>
+</body>
+</html>
