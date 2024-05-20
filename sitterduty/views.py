@@ -6,27 +6,16 @@ from django.views import View
 
 
 def sitter_management(request):
-    if request.method == 'POST':
-        filter_value = request.POST.get('filter')
-        if filter_value:
-            if filter_value == 'on_duty':
-                sitters = Sitter.objects.filter(on_duty=True)
-            elif filter_value == 'off_duty':
-                sitters = Sitter.objects.filter(on_duty=False)
-        else:
-            sitters = Sitter.objects.all()
+    filter_value = request.POST.get('filter') if request.method == 'POST' else request.GET.get('filter')
+    
+    if filter_value == 'on_duty':
+        sitters = Sitter.objects.filter(on_duty=True)
+    elif filter_value == 'off_duty':
+        sitters = Sitter.objects.filter(on_duty=False)
     else:
-        filter_value = request.GET.get('filter')
-        if filter_value:
-            if filter_value == 'on_duty':
-                sitters = Sitter.objects.filter(on_duty=True)
-            elif filter_value == 'off_duty':
-                sitters = Sitter.objects.filter(on_duty=False)
-        else:
-            sitters = Sitter.objects.all()
-
+        sitters = Sitter.objects.all()
+    
     return render(request, 'sitterduty.html', {'sitters': sitters})
-
 
 
 def add_sitter(request):

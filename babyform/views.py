@@ -34,7 +34,9 @@ def baby_edit(request, pk):
             return redirect('baby_list')  
     else:
         form = BabyForm(instance=baby)
-    return render(request, 'baby_form.html', {'form': form})
+    
+    sitters = Sitter.objects.all()
+    return render(request, 'baby_form.html', {'form': form, 'sitters': sitters})
 
 
 def baby_delete(request, pk):

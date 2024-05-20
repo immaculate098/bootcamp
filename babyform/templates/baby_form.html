@@ -95,6 +95,41 @@
         background-color: #ed83b5;
         color: white;
       }
+      .navbar {
+    background-color: #5de0e6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
+.navbar-brand img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.navbar-brand h1 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-top: 25px;
+}
+
+.navbar-toggler-icon {
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ed83b5;
+}
+ 
     </style>
 </head>
 <body>
@@ -112,15 +147,9 @@
           <ul class="nav navbar-nav ml-auto">
            {% if user.is_authenticated %}
               <li class="nav-item">
-                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'baby_list' %}">GO BACK</a>
               </li>
-              <li class="nav-item">
-                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
-              </li>
-              <li class="nav-item">
-                <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
-
-              </li>
+             
               <li class="nav-item">
                 <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'logout'%}">LOGOUT</a>
               </li>
@@ -132,7 +161,7 @@
 
     <div class="container">
         <h1>{% if form.instance.pk %}Edit Baby{% else %}Create Baby{% endif %}</h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% if form.errors %}
             <div style="color: red;">
@@ -146,10 +175,10 @@
                 </ul>
             </div>
         {% endif %}
-            <div class="form-group">
-                <label for="id_name">Name:</label>
-                {{ form.name }}
-            </div>
+        <div class="form-group">
+            <label for="id_baby_name">Name:</label>
+            {{ form.baby_name }}
+        </div>
             <div class="form-group">
                 <label for="id_gender">Gender:</label>
                 {{ form.gender }}
@@ -174,36 +203,25 @@
                 <label for="id_parents_names">Parents' Names:</label>
                 {{ form.parents_names }}
             </div>
-            <div class="form-group">
-                <label for="id_fee">Fee:</label>
-                {{ form.fee }}
-            </div>
-            <div class="form-group">
-                <label for="id_period_of_stay">Period of Stay:</label>
-                {{ form.period_of_stay }}
-            </div>
+            
             <div class="form-group">
                 <label for="id_baby_number">Baby Number:</label>
                 {{ form.baby_number }}
             </div>
 
             <div class="form-group">
-                <label for="id_assigned_to">Assigned_to:</label>
-                <select name="assigned_to" id="id_assigned_to" class="form-control">
-                    {% for sitter in sitters %}
-                        <option value="{{ sitter.pk }}">{{ sitter.name }}</option>
-                    {% endfor %}
-                </select>
+                <label for="id_assigned_to">Assigned to:</label>
+                {{ form.assigned_to }}
             </div>
             
             <div class="form-group">
             <button type="submit">Save</button>
             </div>
         </form>
-    </div>
+    </div><br>
 
 
-    <footer class="mt-auto mb-4">
+    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
         <div class="text-center">
             <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
         </div>

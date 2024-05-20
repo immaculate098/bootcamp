@@ -25,18 +25,19 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
- body {
+        body {
             background-color: whitesmoke;
             font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         h4 {
             text-align: center;
             font-size: 24px;
             color: #ed83b5;
-            margin-top: 20px;
+            margin-top: 120px; /* Adjusted for navbar */
             margin-bottom: 20px;
-            
         }
 
         .container {
@@ -46,19 +47,21 @@
         }
 
         form {
-            margin-right: 150px; 
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
         }
 
-        label {
+        form label {
             font-weight: bold;
             margin-top: 7px;
             margin-bottom: 5px;
             color: #ed83b5;
         }
 
-        input[type="text"],
-        input[type="number"] {
-            width: 50%; 
+        form input[type="text"],
+        form input[type="number"] {
+            width: 300px;
             padding: 10px;
             border: 2px solid #f5c7dc;
             border-radius: 5px;
@@ -66,32 +69,42 @@
             transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        input[type="text"]:focus,
-        input[type="number"]:focus {
+        form input[type="text"]:focus,
+        form input[type="number"]:focus {
             outline: none;
             border-color: #ed83b5;
             box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25);
         }
 
-        button[type="submit"] {
-            margin-top: 20px;
+        form button[type="submit"],
+        form input[type="submit"] {
+            margin-left: 20px;
             background-color: #ed83b5;
             color: white;
             border: none;
-            width: 170px; 
+            width: 170px;
+            height: 50px;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            padding: 10px;
-            transition: background-color 0.8s, color 0.7s;
+            padding: 5px;
+            transition: background-color 0.3s;
         }
 
-        button[type="submit"]:hover {
-            background-color: #ed83b5;
+        form button[type="submit"]:hover,
+        form input[type="submit"]:hover {
+            background-color: #c35886;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         .table-responsive {
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
 
@@ -119,64 +132,51 @@
             background-color: #f5f5f5;
         }
 
-        
+        .navbar {
+            background-color: #5de0e6;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 1;
+        }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
+        .navbar-brand img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
 
-.navbar {
-    background-color: #5de0e6;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    z-index: 1;
-}
+        .navbar-brand h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-top: 25px;
+        }
 
-.navbar-brand img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-left: 10px;
-}
+        .navbar-toggler-icon {
+            color: #1a1a1a;
+        }
 
-.navbar-brand h1 {
-    font-size: 28px;
-    color: #1a1a1a;
-    margin-top: 25px;
-}
+        .navbar-nav .nav-item .nav-link {
+            font-weight: bold;
+            color: #1a1a1a;
+        }
 
-.navbar-toggler-icon {
-    color: #1a1a1a;
-}
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #ed83b5;
+        }
 
-.navbar-nav .nav-item .nav-link {
-    font-weight: bold;
-    color: #1a1a1a;
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-    color: #ed83b5;
-}
-
-
-    .logo-img{
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-left: 10px;
-      }
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark "
-     style="background-color: #5de0e6; position: fixed; top: 0; width: 100%;  height: 100px; z-index: 1;">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="">
         <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
     </a>
@@ -189,33 +189,27 @@ body {
         <ul class="nav navbar-nav ml-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+                    <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'index_view' %}">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a style="font-weight: bolder;  color: black;" class="nav-link"
-                       href="{% url 'receipt'%}">RECEIPTS</a>
+                    <a  style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
                 </li>
-                <li class="nav-item">
-                    <a style="font-weight: bolder;  color: black;" class="nav-link"
-                       href="{% url 'made_sales'%}">ALL SALES</a>
-                </li>
-
-
             {% endif %}
         </ul>
     </div>
-</nav><br><br><br><br><br><br>
+</nav>
 
-    <h4>PAYMENT LIST</h4><br><br>
-    <form action="" method="GET" style="margin-right:450px;">
-        {{ payment_filter.form.as_p }} <br>
-        <input type="submit" value="Search baby name"  style="width:170px; color: white; background-color: #ed83b5; border-radius: 10px;"/>
+<div class="container">
+    <h4>PAYMENT LIST</h4>
+    <form action="" method="GET">
+        {{ payment_filter.form.as_p }}
+        <input type="submit" value="Search baby name" />
     </form>
-    <br>
-    <button type="submit" style=" background-color: #ed83b5;" ><a href="{% url 'payment_lists' %}"style="color:white;>">Add Payment </a></button>
-    <br><br>
+    <button type="button" class="btn btn-primary" style="background-color: #ed83b5;">
+        <a href="{% url 'payment_lists' %}" style="color:white;">Add Payment</a>
+    </button>
 
-    <div class="table-responsive">
+    <div class="card table-responsive">
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
@@ -239,21 +233,32 @@ body {
                     <td>UGX{{ payment.actual_amount }}</td>
                     <td>UGX{{ payment.amount_paid }}</td>
                     <td>UGX{{ payment.get_balance }}</td>
-                    
                     <td>
-                        <button type="submit" ><a href="{% url 'edit_payment' id=payment.id %}" style="color:white;" >Edit</a></button>
-                    </td>  
+                        <button type="button" class="btn btn-secondary" style="background-color: #ed83b5; width: 100px;">
+                            <a href="{% url 'edit_payment' id=payment.id %}" style="color:white;">Edit</a>
+                        </button>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+</div>
 
+<footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
+    <div class="text-center">
+        <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+    </div>
+</footer>
 
-    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
-        <div class="text-center">
-            <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
-        </div>
-    </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIqI6BXDTf0TX+Ic5l5L7ozsRF6Gz5oF9xLhgL4zA5TH1vjE2vK"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgcS4I8NV3xt1V4U5e2i6d5b5qv5Zw1T4CZP6XMvZ2ecp1cJ4p4"
+        crossorigin="anonymous"></script>
 </body>
 </html>

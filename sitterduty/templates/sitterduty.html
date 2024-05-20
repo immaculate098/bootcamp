@@ -13,7 +13,7 @@
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
     crossorigin="anonymous"
 />
-<title style="color: black">DAYSTAR DOLL STORE</title>
+
 <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 
 <link
@@ -171,7 +171,7 @@ tr:hover {
    <a class="navbar-brand" href="">
        <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
    </a>
-   <a class="nav-link" href=""><h1 class="navbar-brand" style="font-size: 25px; color: black;">DOLL STORE PAYMENTS</h1></a>
+   <a class="nav-link" href=""><h1 class="navbar-brand" style="font-size: 25px; color: black;">SITTER DUTY</h1></a>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -180,16 +180,12 @@ tr:hover {
        <ul class="nav navbar-nav ml-auto">
            {% if user.is_authenticated %}
                <li class="nav-item">
-                   <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+                   <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'index_view' %}">HOME</a>
                </li>
                <li class="nav-item">
-                   <a style="font-weight: bolder;  color: black;" class="nav-link"
-                      href="{% url 'receipt'%}">RECEIPTS</a>
-               </li>
-               <li class="nav-item">
-                   <a style="font-weight: bolder;  color: black;" class="nav-link"
-                      href="{% url 'made_sales'%}">ALL SALES</a>
-               </li>
+                <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'logout'%}">LOGOUT</a>
+                
+              </li>
 
 
            {% endif %}
@@ -217,6 +213,7 @@ tr:hover {
     </form>
 
     
+    
     <table>
         <thead style="background-color: #ed83b5;">
             <tr>
@@ -229,7 +226,7 @@ tr:hover {
         <tbody>
             {% for sitter in sitters %}
             <tr>
-                <td>{{ sitter.name }}</td>
+                <td>{{ sitter.student.name }}</td>
                 <td>{{ sitter.gender }}</td>
                 <td>
                     {% if not sitter.on_duty %}
@@ -245,9 +242,8 @@ tr:hover {
                     </form>
                     <form method="get" action="{% url 'update_sitter' sitter.id %}">
                         {% csrf_token %}
-                        <input type="hidden" name="name" value="{{ sitter.name }}">
+                        <input type="hidden" name="name" value="{{ sitter.student.name }}">
                         <input type="hidden" name="gender" value="{{ sitter.gender }}">
-                        
                         <button type="submit" class="custom-button">Update</button>
                     </form>
                 </td>
@@ -256,9 +252,9 @@ tr:hover {
         </tbody>
     </table><br>
 
-    
-
-    <button type="submit" class="custom-button" style="background-color: #ed83b5;  border-radius: 5px; color: white;"><a href="{% url 'index_view' %}">Cancel</a></button>
+    <button type="submit" class="custom-button" style="background-color: #ed83b5;  border-radius: 5px; color: white;">
+        <a href="{% url 'index_view' %}">Cancel</a>
+    </button>
 
     
     <footer class="mt-auto mb-4">

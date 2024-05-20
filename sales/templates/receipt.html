@@ -104,7 +104,7 @@
         <ul class="nav navbar-nav ml-auto">
          {% if user.is_authenticated%}
             <li class="nav-item">
-              <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+              <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">GO BACK</a>
             </li>
             <li class="nav-item">
               <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
@@ -112,7 +112,10 @@
             <li class="nav-item">
               <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
             </li>
-            
+            <li class="nav-item">
+              <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'logout'%}">LOGOUT</a>
+              
+            </li>
          
           {% endif %}
         </ul>

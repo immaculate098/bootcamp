@@ -27,7 +27,7 @@ class Student(models.Model):
     gender = models.CharField(max_length=10, validators=[validate_letters])
     location = models.CharField(max_length=100, validators=[validate_letters])
     date_of_birth = models.DateField()
-    nin = models.CharField(max_length=14,validators=[validate_NIN_length])
+    nin = models.CharField(max_length=14,validators=[validate_NIN_length], default='CF')
     religion = models.CharField(max_length=50, blank=True,null=True,verbose_name="Religion(optional)")
     education = models.CharField(max_length=100, validators=[validate_letters])
     contact = models.CharField(max_length=15, default='',validators=[validate_contact_length])

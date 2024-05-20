@@ -29,7 +29,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     
-    <nav class="navbar navbar-expand-lg custom-bg-ed83b5" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg custom-bg-ed83b5" data-bs-theme="dark" style="background-color: #5de0e6;">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'immy_view' %}">
                 <i class="fa-solid fa-user fa-lg"></i>Sitter Management System</a>
@@ -57,13 +57,13 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn custom-btn-ed83b5">Update</button>
+                    <button type="submit" class="btn custom-btn-ed83b5" style="background-color: #ed83b5; color: white;">Update</button>
                 </form>
             </div>
         </div>
-    </div>
+    </div><br><br>
 
-    <footer class="mt-auto mb-4">
+    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
         <div class="text-center">
             <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
         </div>

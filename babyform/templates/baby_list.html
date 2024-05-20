@@ -181,14 +181,9 @@ body,html {
           <ul class="nav navbar-nav ml-auto">
            {% if user.is_authenticated%}
               <li class="nav-item">
-                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'index_view' %}">HOME</a>
               </li>
-              <li class="nav-item">
-                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
-              </li>
-              <li class="nav-item">
-                <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
-              </li>
+              
               
               <li class="nav-item">
                 <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'logout'%}">LOGOUT</a>
@@ -222,7 +217,7 @@ body,html {
                     <a href="{% url 'baby_delete' baby.pk %}?show_additional_fields=true">Delete</a>
                 </td>
                 
-                <td>{{ baby.name }}</td>
+                <td>{{ baby.baby_name }}</td>
                 <td>{{ baby.gender }}</td>
                 <td>{{ baby.age }}</td>
                 <td>{{ baby.location }}</td>
@@ -233,17 +228,11 @@ body,html {
         </tbody>
     </table><br><br><br><br><br>
     
-    <footer class="mt-auto mb-4" >
-        <div class="text-center">
-          <span
-            >Copyright &copy;
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            DayStar DayCare</span
-          >
-        </div>
-      </footer>
+    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
+      <div class="text-center">
+          <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+      </div>
+  </footer>
 
 </body>
 </html>

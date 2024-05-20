@@ -3,95 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <title>Supply Items</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        .card {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
 
-.card {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-}
+        .card2 {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
 
-.card2 {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-}
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-form input[type="text"],
-form input[type="number"],
-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 2px solid #f5c7dc;
-    box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25); 
-    border-radius: 5px;
-    box-sizing: border-box;
-}
+        form input[type="text"],
+        form input[type="number"],
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #f5c7dc;
+            box-shadow: 0 0 0 0.25rem rgba(245, 199, 220, 0.25);
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-button[type="submit"] {
-    background-color: #ed83b5;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
+        button[type="submit"] {
+            background-color: #ed83b5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-.table th {
-    background-color: #ed83b5;
-    color: white;
-    padding: 10px;
-}
+        .table th {
+            background-color: #ed83b5;
+            color: white;
+            padding: 10px;
+        }
 
-.table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
 
-.table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-.button {
-    display: inline-block;
-    background-color: #ed83b5;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    margin: 10px;
-    cursor: pointer;
-}
+        .button {
+            display: inline-block;
+            background-color: #ed83b5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+            cursor: pointer;
+        }
 
+        .navbar {
+            background-color: #5de0e6;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 1;
+        }
+
+        .navbar-brand img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .navbar-brand h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-top: 25px;
+        }
+
+        .navbar-toggler-icon {
+            color: #1a1a1a;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #ed83b5;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="card2" style="width: 35%;">
-        <h2>Add New Supply</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="">
+          <img src="{% static 'images/daystarlogo.png' %}" alt="logo" class="logo-img">
+        </a>
+        <a class="nav-link" href=""><h1 class="navbar-brand" style="font-size: 25px; color: black;">DOLL STORE PAYMENTS</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="nav navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a style="font-weight: bolder; color: black;" class="nav-link" href="{% url 'index_view' %}">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a style="font-weight: bolder; color: black;" class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+     </nav><br><br><br><br><br>
+
+     
+
+    <div class="form-container">
+        <div class="card2" style="width: 35%;">
+            <h2>Add New Supply</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 
     <hr>
-    
+
     <div class="card">
         <h2>Existing Supplies</h2>
         <table class="table">
@@ -122,5 +212,13 @@ button[type="submit"] {
 
     <a href="{% url 'issue_item' %}" class="button">Issue Item</a>
     <a href="{% url 'add_supply' %}" class="button">Add to Supply</a>
+
+    <br><br>
+
+    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
+        <div class="text-center">
+            <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+        </div>
+    </footer>
 </body>
 </html>

@@ -95,6 +95,41 @@ body,html {
         background-color: #ed83b5;
         color: white;
       }
+      .navbar {
+    background-color: #5de0e6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+}
+
+.navbar-brand img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.navbar-brand h1 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-top: 25px;
+}
+
+.navbar-toggler-icon {
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ed83b5;
+}
+ 
 </style>
 </head>
 <body>
@@ -113,14 +148,9 @@ body,html {
           <ul class="nav navbar-nav ml-auto">
            {% if user.is_authenticated%}
               <li class="nav-item">
-                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'baby_list' %}">GO BACK</a>
               </li>
-              <li class="nav-item">
-                <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'receipt'%}">RECEIPTS</a>
-              </li>
-              <li class="nav-item">
-                <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'made_sales'%}">ALL SALES</a>
-              </li>
+              
               
               <li class="nav-item">
                 <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'logout'%}">LOGOUT</a>
@@ -132,8 +162,9 @@ body,html {
      </nav><br><br><br><br><br>
 
     <div class="card">
-        <h1>{{ baby.name }} Details</h1>
+        
         <div class="details">
+          <p> Name: {{ baby.baby_name }} </p>
             <p>Gender: {{ baby.gender }}</p>
             <p>Age: {{ baby.age }}</p>
             <p>Location: {{ baby.location }}</p>
@@ -141,23 +172,17 @@ body,html {
             {% if request.GET.show_additional_fields %}
             <p>Arrival Time: {{ baby.arrival_time }}</p>
             <p>Parents' Names: {{ baby.parents_names }}</p>
-            <p>Fee: {{ baby.fee }}</p>
-            <p>Period of Stay: {{ baby.period_of_stay }}</p>
             <p>Baby Number: {{ baby.baby_number }}</p>
+            <p>assigned_to : {{ baby.assigned_to }}</p>
             {% endif %}
         </div>
         <a href="{% url 'baby_list' %}" class="cancel-button" style="margin-left: 5px;">Cancel</a>
-    </div>
-<footer class="mt-auto mb-4 center-footer">
-        <div class="text-center">
-            <span>
-                Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-                DayStar DayCare
-            </span>
-        </div>
-</footer>
+    </div><br><br>
+
+  <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
+      <div class="text-center">
+          <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
+      </div>
+  </footer>
 </body>
 </html>

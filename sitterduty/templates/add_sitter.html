@@ -156,16 +156,12 @@
        <ul class="nav navbar-nav ml-auto">
            {% if user.is_authenticated %}
                <li class="nav-item">
-                   <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'manage' %}">HOME</a>
+                   <a style="font-weight: bolder;  color: black;" class="nav-link" href="{% url 'sitter_management' %}">GO BACK</a>
                </li>
                <li class="nav-item">
-                   <a style="font-weight: bolder;  color: black;" class="nav-link"
-                      href="{% url 'receipt'%}">RECEIPTS</a>
-               </li>
-               <li class="nav-item">
-                   <a style="font-weight: bolder;  color: black;" class="nav-link"
-                      href="{% url 'made_sales'%}">ALL SALES</a>
-               </li>
+                <a  style="font-weight: bolder;  color: black;"class="nav-link" href="{% url 'logout'%}">LOGOUT</a>
+                
+              </li>
 
 
            {% endif %}
@@ -173,32 +169,28 @@
    </div>
 </nav><br><br><br><br>
 
-    <div class="container">
+    
 
 
         
-        <h1>Add Sitter</h1>
+        
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div>
-                {% if form.instance.off_duty %}
-                    <p>Off Duty</p>
-                {% endif %}
-            </div>
 
-            <div>
-                {% if form.instance.off_duty %}
-                    <p>Off Duty</p>
-                {% endif %}
-            </div>
-        <div class="button-container">
-            <button type="submit">Add Sitter</button>
-            <button><a href="{% url 'sitter_management' %}">Cancel</a></button>
+        <div class="container">
+            <h1>Add Sitter</h1>
+        
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <div class="button-container">
+                    <button type="submit">Add Sitter</button>
+                    <a href="{% url 'sitter_management' %}" class="btn btn-secondary" style="background-color: #ed83b5; width: 120px; height: 45px;">Cancel</a>
+                </div>
+            </form>
         </div>
-        </form>
-    </div>
+
+    
     <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
         <div class="text-center">
             <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>

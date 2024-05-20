@@ -48,7 +48,7 @@ def added(request):
                 recommender_name=new_sitter_recommender_name,
                 recommender_contact=new_sitter_recommender_contact
             )
-            new_student.save()  # This line should be indented inside the is_valid() block
+            new_student.save()  
 
             return render(request, 'add.html', {
                 'form': StudentForm(),

@@ -34,11 +34,13 @@
     .dropbtn {
         background-color: transparent;
         color: black;
-        font-size: 16px;
+        font-size: 20px;
         border: none;
         cursor: pointer;
         padding: 10px; 
         margin: 0;
+        
+        
     }
 
     .dropdown-content {
@@ -109,6 +111,10 @@
                 </div>
             </div>
         </div>
+        <button class="submit" style="background-color: #ed83b5; color: white;  width: 100px;border-radius: 10px;">
+         <a  style="font-weight: bolder;"class="nav-link" href="{% url 'logout'%} " style="align-content: center; margin-bottom: 200px;">LOGOUT</a>
+            
+        </button>
     </div>
      
      
@@ -128,7 +134,7 @@
                     <div class="content">
                         <h1 id="self-writing-text"></h1>
                         <p>DayStar is a curriculum-based daycare and preschool providing half-day and full-day programs for infants through five years of age.</p><br>
-                        <a href="{% url 'login_view' %}" class="zoom-btn">learn more</a>
+                        <a href="" class="zoom-btn">click menu &#9776;</a>
                     </div>
                 </div>
 
@@ -140,7 +146,7 @@
             </div>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100" style="background-color: #ed83b5;">
                     <img src="{% static 'images/blocks.png' %}" class="card-img-top" alt="Block Image" style="width: 80px; height: 80px; margin: auto;">
@@ -149,7 +155,7 @@
                         <p class="card-text">[6months - 12months]<br>Provides every child early education giving a head start for elementary for a love of learning to last a life time</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary">read more</small>
+                        <small class="text-body-secondary">click menu above for more</small>
                     </div>
                 </div>
             </div>
@@ -161,7 +167,7 @@
                         <p class="card-text">[12months-2years]<br>We offer opportunities for our nursery to grow and explore individuality,communications skills,literacy,hands on and numbers</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary">read more</small>
+                        <small class="text-body-secondary">click menu above for more </small>
                     </div>
                 </div>
             </div>
@@ -173,20 +179,16 @@
                         <p class="card-text">[2years-3years]<br>Following steps to solving problems, organising , controlling impulses and improving attention as a center of focus</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary">read more</small>
+                        <small class="text-body-secondary">click menu above for more</small>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
-    <footer>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p>&copy; 2024 DAYSTAR DAYCARE. All rights reserved.</p>
-                </div>
-            </div>
+    <footer class="mt-auto mb-4" style="background-color: #5de0e6; padding: 30px;">
+        <div class="text-center">
+            <span>Copyright &copy; <script>document.write(new Date().getFullYear())</script> DayStar DayCare</span>
         </div>
     </footer>
 

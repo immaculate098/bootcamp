@@ -33,3 +33,4 @@ class StudentForm(forms.ModelForm):
             'recommender_name': forms.TextInput(attrs={'class': 'form-control'}),
             'recommender_contact': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+

@@ -1,10 +1,15 @@
 from django import forms
-from .models import Sitter
+from .models import Sitter, Student
 
 class SitterForm(forms.ModelForm):
-    on_duty = forms.BooleanField(label='On Duty', required=False)
-    off_duty = forms.BooleanField(label='off Duty', required=False)
-
     class Meta:
         model = Sitter
-        fields = ['name', 'gender', 'on_duty','off_duty']
+        fields = ['student', 'gender', 'on_duty']
+        widgets = {
+            'student': forms.Select(attrs={'class': 'form-control'}),
+            'on_duty': forms.RadioSelect(choices=((True, 'On Duty'), (False, 'Off Duty'))),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SitterForm, self).__init__(*args, **kwargs)
+        self.fields['student'].queryset = Student.objects.all()
