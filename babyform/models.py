@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 import re
+from sitterlist.models import Student
 
 def validate_letters(value):
     if not re.match("^([a-zA-Z]+\s)*[a-zA-Z]+$", value):

@@ -48,9 +48,7 @@ INSTALLED_APPS = [
     'supply',
     'invent',
     'sitterlist',
-    'logout',
-    
-    
+    'logout',  
     
 ]
 
