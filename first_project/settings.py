@@ -108,6 +108,8 @@ from dotenv import load_dotenv
 # Load environment variables from the .env file
 load_dotenv()
 
+SECRET_KEY = os.getenv('SECRET_KEY', 'default-secret-key')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
